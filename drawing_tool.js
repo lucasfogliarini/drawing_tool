@@ -18,10 +18,20 @@ class DrawingTool {
   }
   bufferLine(x1, y1, x2, y2, character){
      if (x1 == x2) {//vertical
+       if (y1 > y2) {
+         let _y1 = y1;
+         y1 = y2;
+         y2 = _y1;
+       }
        for (let i = y1; i <= y2; i++) {
          this.nodes[i][x1] = character;
        }
      } else if(y1 == y2){//horizontal
+       if (x1 > x2) {
+         let _x1 = x1;
+         x1 = x2;
+         x2 = _x1;
+       }
        for (let i = x1; i <= x2; i++) {
          this.nodes[y1][i] = character;
        }
