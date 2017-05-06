@@ -1,15 +1,21 @@
-function openFile(event) {
-  var input = event.target;
+document.addEventListener("DOMContentLoaded", function(event) {
+  var draw = document.getElementById("draw");
+  var inputFile = document.getElementById("inputFile");
   var reader = new FileReader();
   reader.onload = function(){
     let commandLine = reader.result;
-    var drawingInterpretor = new DrawingToolInterpretor(commandLine);
-    var output = document.getElementById('output');
-    var text = drawingInterpretor.draw();
-    download(text,'output.txt');
+    try {
+      let drawingInterpretor = new DrawingToolInterpretor(commandLine);
+      let drawText = drawingInterpretor.draw();
+      download(drawText,'output.txt');
+    } catch (e) {
+      alert(e);
+    }
   };
-  reader.readAsText(input.files[0]);
-};
+  draw.addEventListener("click", function(){
+    reader.readAsText(inputFile.files[0]);
+  }, false);
+});
 
 function download(text, filename) {
     var file = new Blob([text], {type: 'text/plain'});
