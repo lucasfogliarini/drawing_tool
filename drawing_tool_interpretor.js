@@ -36,7 +36,7 @@ class DrawingToolInterpretor {
         let bucketFillCommand = this.formatBucketFillCommand(command);
         this.commands.push(bucketFillCommand);
       } else {
-         throw new Error('');
+         throw new Error("The program interpret the following list of commands: \n L {x1} {y1} {x2} {y2}: Create Line \n R {x1} {y1} {x2} {y2}: Create Rectangle \n B {x} {y} {color}: Bucket Fill ");
       }
     }
   }
