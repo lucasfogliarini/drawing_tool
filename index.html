@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Drawing Tool</title>
+    <script src="drawing_tool.js" charset="utf-8"></script>
+    <script src="drawing_tool_interpretor.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <label for="">Select a input.txt file with commands following the rules:</label>
+    <ul>
+      <li><b>C w h</b>	Create Canvas: Should create a new canvas of width w and height h.</li>
+
+      <li><b>L x1 y1 x2 y2</b> Create Line: Should create a new line from (x1,y1) to (x2,y2). Currently only horizontal or vertical lines are supported. Horizontal and vertical lines will be drawn using the 'x' character.</li>
+
+      <li><b>R x1 y1 x2 y2</b>	Create Rectangle: Should create a new rectangle, whose upper left corner is (x1,y1) and lower right corner is (x2,y2). Horizontal and vertical lines will be drawn using the 'x' character.</li>
+
+      <li><b>B x y c</b>	Bucket Fill: Should fill the entire area connected to (x,y) with "colour" c. The behaviour of this is the same as that of the "bucket fill" tool in paint programs.</li>
+    </ul>
+    <br />
+    <input type='file' accept='text/plain' onchange='openFile(event)'>
+  </body>
+</html>
