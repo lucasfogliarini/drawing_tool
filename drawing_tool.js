@@ -11,12 +11,16 @@ class DrawingTool {
     let y1 = 0;
     let x2 = width + 1;
     let y2 = height + 1;
-    this.bufferLine(x1, y1, x1, y2, '|');
-    this.bufferLine(x2, y1, x2, y2, '|');
-    this.bufferLine(x1, y1, x2, y1, '-');
-    this.bufferLine(x1, y2, x2, y2, '-');
+    this.bufferLine(x1, y1, x1, y2, '|', true);
+    this.bufferLine(x2, y1, x2, y2, '|', true);
+    this.bufferLine(x1, y1, x2, y1, '-', true);
+    this.bufferLine(x1, y2, x2, y2, '-', true);
   }
-  bufferLine(x1, y1, x2, y2, character){
+  bufferLine(x1, y1, x2, y2, character, canvas){
+    if (!canvas) {
+      this.validateCoordinate(x1, y1);
+      this.validateCoordinate(x2, y2);
+    }
      if (x1 == x2) {//vertical
        if (y1 > y2) {
          let _y1 = y1;
@@ -46,6 +50,7 @@ class DrawingTool {
     this.bufferLine(x2, y1, x2, y2, character);
   }
   bufferBucketFill(x, y, replacement_color){
+    this.validateCoordinate(x, y);
     let target_color = this.nodes[y][x];
     if(target_color === replacement_color){
         return;
@@ -72,5 +77,10 @@ class DrawingTool {
       screen += "\n";
     }
     return screen;
+  }
+  validateCoordinate(x, y){
+    if (x < 1 || y < 1 || x >= this.canvasWidth || y >= this.canvasHeight) {
+      throw new Error('x: '+x+' and y: '+y+' is an invalid coordinate. The coordinates must be pointed inside the canvas. width: '+this.canvasWidth+', height: '+this.canvasHeight);
+    }
   }
 }
